@@ -1,2 +1,4 @@
 ffmpeg.exe
 apktool*.jar
+claude_configs/
+sslkeylogfile.log

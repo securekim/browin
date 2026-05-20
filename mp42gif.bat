@@ -7,6 +7,15 @@ if "%~1" == "" (
     exit /b
 )
 
+:: 와일드카드 처리를 위한 루프 적용
+for %%I in (%1) do (
+    call :PROCESS_FILE "%%~I" "%~2"
+)
+
+endlocal
+exit /b
+
+:PROCESS_FILE
 :: 2. 입력 파일 변수 설정
 set "INPUT=%~1"
 
@@ -21,4 +30,4 @@ if "%~2" == "" (
 :: 4. 실제 변환 실행
 ffmpeg -i "%INPUT%" -vf "fps=10,scale=iw*0.5:-1:flags=lanczos" "%OUTPUT%"
 
-endlocal
+exit /b
